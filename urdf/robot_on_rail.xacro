@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<robot name="robot_on_rail" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Get the macros we will need -->
+  <xacro:include filename="$(find abb_irb4400)/urdf/irb4400l_30_243_macro.xacro"/>
+  <xacro:include filename="$(find timing_example)/urdf/robot_transport_unit_macro.xacro"/>
+
+  <!-- Import instances of the macros -->
+  <xacro:abb_irb4400l_30_243 prefix="robot_"/>
+  <xacro:robot_transport_unit prefix="rail_"/>
+
+  <!-- Extra links -->
+  <link name="world"/>
+
+  <!-- Connect the imported macro instances -->
+  <joint name="world_to_rail" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="rail_base_link"/>
+  </joint>
+  <joint name="robot_to_rail" type="fixed">
+    <origin xyz="0 -0 -0.390" rpy="0 0 0"/>
+    <parent link="rail_tool0"/>
+    <child link="robot_base_link"/>
+  </joint>
+
+</robot>

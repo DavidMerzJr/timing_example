@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ipp</name>
+  <version>0.1.0</version>
+  <description>
+    This package contains code and configuration files used to simulate two possible arrangements
+    of a machine-tending system.
+  </description>
+  <maintainer email="david.merz@swri.org">David Merz, Jr.</maintainer>
+  <license>Apache 2.0</license>
+  <author email="david.merz@swri.org">David Merz, Jr.</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+<!--  <depend>tesseract_environment</depend>-->
+<!--  <depend>tesseract_rosutils</depend>-->
+<!--  <depend>tesseract_msgs</depend>-->
+<!--  <depend>tesseract_common</depend>-->
+<!--  <exec_depend>tesseract_plugins</exec_depend>-->
+
+<!--  <build_depend>ros_industrial_cmake_boilerplate</build_depend>-->
+
+<!--  <build_depend>eigen</build_depend>-->
+<!--  <build_export_depend>eigen</build_export_depend>-->
+<!--  <depend>dynamic_reconfigure</depend>-->
+<!--  <depend>pluginlib</depend>-->
+<!--  <depend>tf2_ros</depend>-->
+<!--  <depend>tf2_eigen</depend>-->
+<!--  <depend>visualization_msgs</depend>-->
+</package>

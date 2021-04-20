@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<robot name="robot_transport_unit" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--This macro defines linear rail that runs inside the workspace.  It has one joint:
+    - ${prefix}actuation_joint
+
+  The base frame is: ${prefix}base_link
+  The robot mounts to: ${prefix}tool0-->
+
+  <xacro:macro name="robot_transport_unit" params="prefix">
+    <!-- Top-level links -->
+    <link name="${prefix}base_link"/>
+
+    <link name="${prefix}carriage">
+      <visual>
+        <geometry>
+          <mesh filename="package://timing_example/meshes/visual/carriage.stl"/>
+        </geometry>
+        <material name="${prefix}carriage_visual_material">
+          <color rgba="0.75 0.2 0.2 1"/>
+        </material>
+      </visual>
+
+      <!--These collision tags were generated automatically-->
+      <collision>
+        <origin xyz="1.67045 0.1215 2.14435" rpy="0  0  ${radians(180)}"/>
+        <geometry>
+          <mesh filename="package://timing_example/meshes/collision/carriage.stl"/>
+        </geometry>
+        <material name="world_collision_material">
+          <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+      </collision>
+    </link>
+
+    <link name="${prefix}tool0"/>
+
+    <!-- Top-level joints -->
+    <joint name="${prefix}actuation_joint" type="prismatic">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}carriage"/>
+      <axis xyz="1 0 0"/>
+      <limit lower="0.001" upper="5.000" effort="0" velocity="1"/> <!-- maybe 2.5m/s -->
+    </joint>
+
+    <joint name="${prefix}carriage_to_robot_mount" type="fixed">
+      <parent link="${prefix}carriage"/>
+      <child link="${prefix}tool0"/>
+      <origin xyz="01.26735 00.28829 02.13236" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+</robot>
