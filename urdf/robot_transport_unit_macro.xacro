@@ -9,12 +9,11 @@
 
   <xacro:macro name="robot_transport_unit" params="prefix">
     <!-- Top-level links -->
-    <link name="${prefix}base_link"/>
-
-    <link name="${prefix}carriage">
+    <link name="${prefix}base_link">
       <visual>
+        <origin xyz="2.5 0.0 0.125" rpy="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://timing_example/meshes/visual/carriage.stl"/>
+          <box size="6.0 1.0 0.25"/>
         </geometry>
         <material name="${prefix}carriage_visual_material">
           <color rgba="0.75 0.2 0.2 1"/>
@@ -23,9 +22,30 @@
 
       <!--These collision tags were generated automatically-->
       <collision>
-        <origin xyz="1.67045 0.1215 2.14435" rpy="0  0  ${radians(180)}"/>
+        <origin xyz="2.5 0.0 0.125" rpy="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://timing_example/meshes/collision/carriage.stl"/>
+          <box size="6.0 1.0 0.25"/>
+        </geometry>
+        <material name="world_collision_material">
+          <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+      </collision>
+    </link>
+
+    <link name="${prefix}carriage">
+      <visual>
+        <origin xyz="0 0 0.25" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.75 1.25 0.25"/>
+        </geometry>
+        <material name="${prefix}carriage_visual_material">
+          <color rgba="0.75 0.2 0.2 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.25" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.75 1.25 0.25"/>
         </geometry>
         <material name="world_collision_material">
           <color rgba="0.6 0.6 0.6 1"/>
@@ -47,7 +67,7 @@
     <joint name="${prefix}carriage_to_robot_mount" type="fixed">
       <parent link="${prefix}carriage"/>
       <child link="${prefix}tool0"/>
-      <origin xyz="01.26735 00.28829 02.13236" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.75" rpy="0 0 0"/>
     </joint>
 
   </xacro:macro>

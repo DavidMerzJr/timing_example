@@ -7,20 +7,32 @@
   <!-- Import instances of the macros -->
   <xacro:abb_irb4400l_30_243 prefix="robot0_"/>
   <xacro:abb_irb4400l_30_243 prefix="robot1_"/>
+  <xacro:lathe prefix="lathe1_"/>
+  <xacro:lathe prefix="lathe2_"/>
 
   <!-- Extra links -->
   <link name="world"/>
 
+  <!-- Connect the imported macro instances -->
   <joint name="robot1_to_world" type="fixed">
     <origin xyz="0 -2.000 0" rpy="0 0 0"/>
     <parent link="world"/>
     <child link="robot1_base_link"/>
   </joint>
-
   <joint name="robot2_to_world" type="fixed">
     <origin xyz="0 2.000 0" rpy="0 0 0"/>
     <parent link="world"/>
     <child link="robot2_base_link"/>
+  </joint>
+  <joint name="world_to_lathe1" type="fixed">
+    <origin xyz="2.5 0 0" rpy="0.0.0"/>
+    <parent link="world"/>
+    <child link="lathe1_base_link"/>
+  </joint>
+  <joint name="world_to_lathe2" type="fixed">
+    <origin xyz="-2.5 0 0" rpy="0.0.0"/>
+    <parent link="world"/>
+    <child link="lathe2_base_link"/>
   </joint>
 
 </robot>

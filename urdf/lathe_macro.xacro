@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<robot name="lathe" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- This macro defines a lathe inside the workspace with several reference points
+  The base frame is: ${prefix}base_link -->
+
+  <xacro:macro name="lathe" params="prefix">
+    <!-- Top-level links -->
+    <xacro:property name="length" value="4.0"/>
+    <xacro:property name="width" value="2.0"/>
+    <xacro:property name="height" value="2.5"/>
+    <link name="${prefix}base_link">
+      <visual>
+        <origin xyz="0.0 ${width} 1.25" rpy="0 0 0"/>
+        <geometry>
+          <box size="${length} ${width} ${height}"/>
+        </geometry>
+        <material name="lathe_material">
+          <color rgba="0.6 0.6 0.6 0.5"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 ${width} 1.25" rpy="0 0 0"/>
+        <geometry>
+          <box size="${length} ${width} ${height}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}pick_point"/>
+    <link name="${prefix}machine_point"/>
+    <link name="${prefix}drop_point"/>
+
+    <joint name="${prefix}lathe_to_pick_point" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}pick_point"/>
+      <origin xyz="-1.5 -1.0 0.75" rpy="0 0 0"/>
+    </joint>
+    <joint name="${prefix}lathe_to_machine_point" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}machine_point"/>
+      <origin xyz="-0.5 1.5 1.25" rpy="0 0 0"/>
+    </joint>
+    <joint name="${prefix}lathe_to_drop_point" type="fixed">
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}drop_point"/>
+      <origin xyz="-0.5 -1.0 0.75" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+</robot>

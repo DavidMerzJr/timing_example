@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>ipp</name>
+  <name>timing_example</name>
   <version>0.1.0</version>
   <description>
     This package contains code and configuration files used to simulate two possible arrangements
@@ -12,7 +12,12 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <depend>actionlib</depend>
+  <depend>control_msgs</depend>
   <depend>roscpp</depend>
+  <depend>trajectory_msgs</depend>
+
+  <exec_depend>industrial_robot_simulator</exec_depend>
 <!--  <depend>tesseract_environment</depend>-->
 <!--  <depend>tesseract_rosutils</depend>-->
 <!--  <depend>tesseract_msgs</depend>-->

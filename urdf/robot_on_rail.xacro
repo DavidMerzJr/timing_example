@@ -2,12 +2,15 @@
 <robot name="robot_on_rail" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Get the macros we will need -->
-  <xacro:include filename="$(find abb_irb4400)/urdf/irb4400l_30_243_macro.xacro"/>
+  <xacro:include filename="$(find abb_irb4400_support)/urdf/irb4400l_30_243_macro.xacro"/>
   <xacro:include filename="$(find timing_example)/urdf/robot_transport_unit_macro.xacro"/>
+  <xacro:include filename="$(find timing_example)/urdf/lathe_macro.xacro"/>
 
   <!-- Import instances of the macros -->
   <xacro:abb_irb4400l_30_243 prefix="robot_"/>
   <xacro:robot_transport_unit prefix="rail_"/>
+  <xacro:lathe prefix="lathe1_"/>
+  <xacro:lathe prefix="lathe2_"/>
 
   <!-- Extra links -->
   <link name="world"/>
@@ -19,9 +22,19 @@
     <child link="rail_base_link"/>
   </joint>
   <joint name="robot_to_rail" type="fixed">
-    <origin xyz="0 -0 -0.390" rpy="0 0 0"/>
+    <origin xyz="0 -0 -0.390" rpy="0 0 3.14"/>
     <parent link="rail_tool0"/>
     <child link="robot_base_link"/>
+  </joint>
+  <joint name="world_to_lathe1" type="fixed">
+    <origin xyz="2.5 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="lathe1_base_link"/>
+  </joint>
+  <joint name="world_to_lathe2" type="fixed">
+    <origin xyz="-2.5 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="lathe2_base_link"/>
   </joint>
 
 </robot>
